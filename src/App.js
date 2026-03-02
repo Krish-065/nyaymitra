@@ -130,7 +130,7 @@ const response = await fetch("https://nyaymitra-backend-1.onrender.com/api/chat"
     if (!proInput.type) return;
     setProLoading(true); setProResult("");
     try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("https://nyaymitra-backend-jvtq.onrender.com", {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000,
