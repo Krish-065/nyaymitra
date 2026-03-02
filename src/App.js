@@ -105,8 +105,12 @@ export default function NyayMitra() {
     setChatLoading(true);
     try {
       const systemPrompt = `You are NyayMitra, an expert AI legal assistant specializing in Indian laws, Constitution, IPC, CrPC. Provide ${responseStyle==="simple"?"simple, citizen-friendly":"detailed professional"} answers. Respond in ${lang}. Always cite relevant sections and landmark judgments. Add disclaimer to consult a lawyer.`;
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method:"POST",
+const response = await fetch("https://nyaymitra-backend-1.onrender.com/api/chat", {
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("token")}`
+  },
+      method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000, system:systemPrompt, messages:msgs.map(m=>({role:m.role,content:m.content})) })
       });
